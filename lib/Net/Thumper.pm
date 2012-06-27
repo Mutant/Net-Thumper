@@ -39,10 +39,7 @@ There are a few limitations:
 
 * No concept of 'channels' is exposed, so only one logical channel is possible
 
-* Consume / receive likely doesn't work properly in some cases (see docs below)
-
-* Reading data on the connection is done in a fairly simple manner, which may
-have some issues, and may not perform optimally  
+* Some parts of the AMQP spec not exposed
 
 * API isn't the cleanest is some places - could be tidied up
 
