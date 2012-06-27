@@ -8,8 +8,8 @@ Net::Thumper - a rudimentary Pure Perl AMQP client
 
  my $amqp = Net::Thumper->new(
     debug => 0,
-    server => 'srsrweb2',
-    amqp_definition => $FindBin::Bin . '/../../../srs/lib/perl5/amqp0-8.xml',
+    server => 'rabbitmq-host',
+    amqp_definition => 'amqp0-8.xml',
  );
 
  # Connect
@@ -188,7 +188,7 @@ sub connect {
     my $start_frame = Net::AMQP::Protocol::Connection::StartOk->new(
         client_properties => {
             platform    => 'Perl',
-            product     => 'SRS',
+            product     => 'Net-Thumper',
             version     => 0.0.1,
         },
         mechanism => 'AMQPLAIN',
@@ -530,11 +530,6 @@ Receive a message from a queue that has previously been consumed from. Wait for
 up to $timeout seconds before giving up and returning undef.
 
 The message returned is of the same format as that returned from get()
-
-Note, this method doesn't really work correctly, as if two messages are
-received at the same time, the second one will be lose (due to no form
-of internal queueing). As this isn't used by the SRS (we use get()), it
-isn't considered a problem (currently).
 
 =cut
 
