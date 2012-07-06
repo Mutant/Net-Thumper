@@ -43,6 +43,12 @@ There are a few limitations:
 
 * API isn't the cleanest is some places - could be tidied up
 
+While this module mostly works for my purpose, it might be restrictive in some
+places. Still, the fundamentals are reasonably solid (the low-level communication)
+so it could probably be fairly easily modified for other purposes. 
+
+Patches welcome :)
+
 =cut
 
 use Moose;
@@ -158,16 +164,19 @@ sub BUILD {
 
 =head1 METHODS
 
-=head2 connect()
+=head2 connect( login => 'login', password => 'password' )
 
 Connects to the server. Additionally sends all handshake frames necessary to 
 start a connection.
+
+Accepts two optional parameters, 'login' and 'password', which both default
+to 'guest'.
 
 =cut
 
 sub connect {
     my $self = shift;
-    my $timeout = shift;
+    my %params = @_;
 
     my $greeting = Net::AMQP::Protocol->header;
     $self->_write_data($greeting);
@@ -190,8 +199,8 @@ sub connect {
         },
         mechanism => 'AMQPLAIN',
         response => {
-            LOGIN    => 'guest',
-            PASSWORD => 'guest',
+            LOGIN    => $params{login}    // 'guest',
+            PASSWORD => $params{password} // 'guest',
         },
         locale => 'en_US',
     );
