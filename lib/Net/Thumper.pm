@@ -67,15 +67,15 @@ $SIG{PIPE} = "IGNORE";
 #  (Only needs to be done once)
 my $spec_loaded = 0;
 
-my $PORT = 5672;
-
 =head1 CONSTRUCTOR
 
-=head2 new(debug => $bool, server => $host, amqp_definition => $path_to_amqp_xml, debug_hook => \&_debug_hook)
+=head2 new(debug => $bool, server => $host, port => $port, amqp_definition => $path_to_amqp_xml, debug_hook => \&_debug_hook)
 
 Creates a new Net::Thumper instance. Parameters are:
 
 * server (required) - the server to connect to
+
+* port - server port, defaults to 5672
 
 * amqp_definition (required) - path to the AMQP XML definition (as available from the amqp.org website)
 
@@ -107,6 +107,12 @@ has 'server' => (
     isa => 'Str',
 );
 
+has 'port' => (
+    is => 'ro',
+    isa => 'Int',
+    default => 5672
+);
+
 has 'amqp_definition' => (
     is => 'ro',
     isa => 'Str',
@@ -133,7 +139,7 @@ sub _build_socket {
     {
         $socket = IO::Socket::INET->new(
             PeerAddr => $self->server,
-            PeerPort => $PORT,
+            PeerPort => $self->port,
             Proto    => 'tcp',
             Timeout  => 1,
         );
