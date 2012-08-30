@@ -181,7 +181,7 @@ sub test_publish : Tests(13) {
     isa_ok($header, 'Net::AMQP::Protocol::Basic::ContentHeader', 'Sent a Basic::ContentHeader frame');
     is($header->{reply_to}, 'me', "Reply to set correctly");
     is($header->{correlation_id}, '1', "Correlation id set correctly");
-    is($header->{user_id}, 'guest', "User id hard-coded to 'guest'");
+    is($header->{user_id}, undef, "User id has not been set");
     is($self->{frames_written}[1]->{body_size}, 4, "Body size is correct");
     
     isa_ok($self->{frames_written}[2], 'Net::AMQP::Frame::Body', 'Third frame is a body frame');

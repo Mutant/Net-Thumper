@@ -421,7 +421,7 @@ sub publish {
             message_id       => undef,
             timestamp        => time,
             type             => undef,
-            user_id          => 'guest',
+            user_id          => undef,
             app_id           => undef,
             cluster_id       => undef,
             %$props
