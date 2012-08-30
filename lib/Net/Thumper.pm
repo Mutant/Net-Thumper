@@ -413,9 +413,7 @@ sub publish {
         header_frame => Net::AMQP::Protocol::Basic::ContentHeader->new(
             content_type     => 'application/octet-stream',
             content_encoding => undef,
-            headers          => {
-                %$props,               
-            },
+            headers          => {},
             delivery_mode    => 1,
             priority         => 1,
             correlation_id   => undef,
@@ -426,6 +424,7 @@ sub publish {
             user_id          => 'guest',
             app_id           => undef,
             cluster_id       => undef,
+            %$props
         ),
     );
    
