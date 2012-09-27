@@ -33,7 +33,8 @@ Net::Thumper - a rudimentary Pure Perl AMQP client
  
 =head1 DESCRIPTION
 
-This class is a rudimentary AMQP client written in Pure Perl. 
+This class is a rudimentary AMQP client written in Pure Perl. It has been tested
+with recent versions of RabbitMQ.
 
 There are a few limitations:
 
