@@ -884,7 +884,21 @@ sub _debug {
 no Moose;
 __PACKAGE__->meta->make_immutable;
 
-=head1 AUTHOR AND LICENCE
+=head1 THE FUTURE
+
+When I get a chance, I'd like to tidy up the API, improve the tests and
+split some of the logic into different modules. Could also look at a lighter
+weight alternative to Moose.
+
+Patches are - of course - welcome.
+
+=head1 AUTHORS
+
+Created by Sam Crawley
+
+Contributions by DanC (dconlon)
+
+=head1 LICENCE
 
 Development commissioned by NZ Registry Services, and carried out by
 Catalyst IT - L<http://www.catalyst.net.nz/>
