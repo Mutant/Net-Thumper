@@ -252,8 +252,6 @@ sub connect {
 
 Open a channel. This is hard-coded to channel 1.
 
-(Could really be part of connect(), since we always call  
-
 =cut
 
 sub open_channel {
